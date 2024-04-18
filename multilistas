@@ -1,0 +1,51 @@
+import os
+
+ls_id = []
+ls_name = []
+ls_contac = []
+ls_e_mail = []
+
+def fnt_limpiar():
+    os.system('cls')
+    print('autor: Darwin Varilla')
+    print('fecha: 18/04/2024\n\n')
+
+def fnt_registrar(id, name, contac, e_mail):
+    os.system('cls')
+    if id == '' or name == '' or contac == '' or e_mail == '':
+        input('Por favor ingrese nuevamente los datos solicitados correctamente <ENTER> ')
+    else:
+        if id in ls_id:
+            input('Esa persona ya se encuentra registrada <ENTER>')
+        else:
+            ls_id.append(id)
+            ls_name.append(name)
+            ls_contac.append(contac)
+            ls_e_mail.append(e_mail)
+            input(f'La persona {name} ha sido registrada con éxito <ENTER>')
+
+def fnt_selector(opcion):
+    os.system('cls')
+    fnt_limpiar()
+    if opcion == '1':
+        id = input('ID: ')
+        if id in ls_id:
+            input('Esta persona ya está registrada <ENTER>')
+        else:
+            name = input('Nombre: ')
+            contac = input('Contacto: ')
+            e_mail = input('E-Mail: ')
+            fnt_registrar(id, name, contac, e_mail)
+    elif opcion == '2':
+        fnt_limpiar()
+        for i in range(len(ls_id)):
+            print(f'{ls_id[i]}   {ls_name[i]}    {ls_contac[i]}     {ls_e_mail[i]}')
+        input('\nPresione <ENTER> para continuar...')
+
+sw = True
+while sw:
+    fnt_limpiar()
+    op = input('\n\n>>>>>MENÚ<<<<<<<\n1. Registrar\n2. Consultar\n3. Salir\n-> ')
+    if op == '3':
+        break 
+    fnt_selector(op)
